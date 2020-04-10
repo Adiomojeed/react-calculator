@@ -33,6 +33,7 @@
 		"prettier": "^2.0.4"
 	},
 	"dependencies": {
+		"big.js": "^5.2.2",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1"
 	}
