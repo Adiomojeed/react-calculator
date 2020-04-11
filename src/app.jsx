@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Display from "./components/Display";
 import ButtonPanel from "./components/ButtonPanel";
-import calculate from './logic/calculate.js'
+import calculate from './logic/calculate'
 
 class App extends React.Component {
 	constructor(props) {
@@ -10,7 +10,7 @@ class App extends React.Component {
         this.state = {
             total: null,
             next: null,
-            operation: null
+            
         }
 		this.handleClick = this.handleClick.bind(this);
 	}
