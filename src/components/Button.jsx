@@ -14,10 +14,14 @@ class Button extends Component {
 	}
 
 	render() {
-		const { name } = this.props;
+		const { name, color } = this.props;
 		return (
-			<div>
-				<button type="button" onClick={this.handleClick}>
+			<div className="btn-group">
+				<button
+					type="button"
+					onClick={this.handleClick}
+					className={`btn ${color}`}
+				>
 					{name}
 				</button>
 			</div>

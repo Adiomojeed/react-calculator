@@ -1,33 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import "./styles/app.scss";
 import Display from "./components/Display";
 import ButtonPanel from "./components/ButtonPanel";
-import calculate from './logic/calculate'
+import calculate from "./logic/calculate";
+
 
 class App extends React.Component {
 	constructor(props) {
-        super(props);
-        this.state = {
-            total: null,
-            next: null,
-            
-        }
+		super(props);
+		this.state = {
+			total: null,
+			next: null,
+		};
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick(buttonName) {
-        this.setState(prevState => {
-            return calculate(prevState, buttonName)
-        })
-    }
+		this.setState((prevState) => {
+			return calculate(prevState, buttonName);
+		});
+	}
 
 	render() {
-        const {total, next} = this.state
+		const { total, next } = this.state;
 		return (
-			<div>
-				<Display value={next || total || '0'}  />
+			<React.Fragment>
+				<Display value={next || total || "0"} />
 				<ButtonPanel clickHandler={this.handleClick} />
-			</div>
+				<footer>codeLeaf</footer>
+			</React.Fragment>
 		);
 	}
 }

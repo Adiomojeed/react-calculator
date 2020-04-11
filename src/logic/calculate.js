@@ -5,7 +5,7 @@ export default function calculate(obj, buttonName) {
 	// total: this is the total value of the calculations
 	// next: this is the present value displayed on screen
 	// operation: this is the operation performed
-	
+
 	if (buttonName === "AC") {
 		return {
 			next: null,
@@ -18,6 +18,19 @@ export default function calculate(obj, buttonName) {
 		if (buttonName === "0" && obj.next === "0") {
 			return {};
 		}
+		// If there is an operation
+
+		if (obj.operation) {
+			if (obj.next) {
+				return {
+					next: obj.next + buttonName,
+				};
+			}
+			return {
+				next: buttonName,
+			};
+		}
+
 		// If no operation was there before
 
 		if (obj.next) {
@@ -25,19 +38,6 @@ export default function calculate(obj, buttonName) {
 			return {
 				next,
 				total: null,
-			};
-		}
-		// If there is an operation
-
-		if (obj.operation) {
-			if (obj.next) {
-				return {
-					next: obj.next + buttonName,
-					total: obj.next,
-				};
-			}
-			return {
-				next: buttonName,
 			};
 		}
 
@@ -58,6 +58,7 @@ export default function calculate(obj, buttonName) {
 				operation: null,
 			};
 		}
+		return {};
 	}
 
 	if (buttonName === "+/-") {
@@ -77,41 +78,41 @@ export default function calculate(obj, buttonName) {
 		}
 		if (obj.total) {
 			return {
-				total: obj.total / 100
-			}
+				total: obj.total / 100,
+			};
 		}
 		return {};
 	}
 
-	if (buttonName === '.') {
+	if (buttonName === ".") {
 		if (obj.next) {
-			if (obj.next.includes('.')) {
+			if (obj.next.includes(".")) {
 				return {
-					next: obj.next
-				}
+					next: obj.next,
+				};
 			}
 			return {
-				next: `${obj.next  }.`
-			}
+				next: `${obj.next}.`,
+			};
 		}
 		return {
-			next: '0.'
-		}
+			next: "0.",
+		};
 	}
 
 	if (obj.operation) {
 		return {
 			total: operate(obj.total, obj.next, obj.operation),
 			next: null,
-			operation: null
-		}
+			operation: buttonName,
+		};
 	}
 
 	// Handles a new operation after '=' has been clicked
 	if (!obj.next) {
 		return {
-			operation: buttonName
-		}
+			operation: buttonName,
+		};
 	}
 
 	return {
