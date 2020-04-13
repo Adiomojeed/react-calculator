@@ -16,7 +16,7 @@ class ButtonPanel extends Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="cont">
 				<div className="btn-row">
 					<Button
 						name="%"

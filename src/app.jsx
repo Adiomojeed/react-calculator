@@ -25,10 +25,14 @@ class App extends React.Component {
 		const { total, next } = this.state;
 		return (
 			<React.Fragment>
-				<div className="con">
-					<Display value={next || total || "0"} />
-					<ButtonPanel clickHandler={this.handleClick} />
-					<footer>codeLeaf</footer>
+				<div className="container">
+					<div className="row">
+						<div className="col-12 col-lg-6">
+							<Display value={next || total || "0"} />
+							<ButtonPanel clickHandler={this.handleClick} />
+							<footer>codeLeaf</footer>
+						</div>
+					</div>
 				</div>
 			</React.Fragment>
 		);
