@@ -9,7 +9,8 @@
 		"lint": "eslint \"src/**/*.{js,jsx}\" --quiet --fix",
 		"dev": "parcel public/index.html",
 		"build": "parcel build public/index.html --out-dir docs --public-url ./",
-		"deploy": "npm run build"
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+        "start": "node server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -39,6 +40,7 @@
 	},
 	"dependencies": {
 		"big.js": "^5.2.2",
+		"express": "^4.17.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1"
 	}
