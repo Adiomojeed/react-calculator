@@ -5,7 +5,6 @@ import Display from "./components/Display";
 import ButtonPanel from "./components/ButtonPanel";
 import calculate from "./logic/calculate";
 
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -26,9 +25,11 @@ class App extends React.Component {
 		const { total, next } = this.state;
 		return (
 			<React.Fragment>
-				<Display value={next || total || "0"} />
-				<ButtonPanel clickHandler={this.handleClick} />
-				<footer>codeLeaf</footer>
+				<div className="con">
+					<Display value={next || total || "0"} />
+					<ButtonPanel clickHandler={this.handleClick} />
+					<footer>codeLeaf</footer>
+				</div>
 			</React.Fragment>
 		);
 	}
