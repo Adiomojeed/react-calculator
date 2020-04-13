@@ -9,8 +9,8 @@
 		"lint": "eslint \"src/**/*.{js,jsx}\" --quiet --fix",
 		"dev": "parcel public/index.html",
 		"build": "parcel build public/index.html --out-dir docs --public-url ./",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
-        "start": "node server.js"
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+		"start": "node server.js"
 	},
 	"repository": {
 		"type": "git",
