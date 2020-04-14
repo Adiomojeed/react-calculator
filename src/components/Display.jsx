@@ -1,9 +1,10 @@
 import React from "react";
 
-const Display = ({ value }) => {
+const Display = ({ value, totValue }) => {
 	return (
-		<div>
-			<div className='display'>{value}</div>
+		<div className='display'>
+			<div className="display-1">{totValue}</div>
+			<div className='display-2'>{value}</div>
 		</div>
 	);
 };

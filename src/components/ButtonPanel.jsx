@@ -34,7 +34,7 @@ class ButtonPanel extends Component {
 						color="text-red"
 					/>
 					<Button
-						name="÷"
+						name="del"
 						clickHandler={this.handleClick}
 						color="text-grey"
 					/>
@@ -44,7 +44,7 @@ class ButtonPanel extends Component {
 					<Button name="8" clickHandler={this.handleClick} />
 					<Button name="9" clickHandler={this.handleClick} />
 					<Button
-						name="x"
+						name="÷"
 						clickHandler={this.handleClick}
 						color="text-grey"
 					/>
@@ -54,7 +54,7 @@ class ButtonPanel extends Component {
 					<Button name="5" clickHandler={this.handleClick} />
 					<Button name="6" clickHandler={this.handleClick} />
 					<Button
-						name="-"
+						name="x"
 						clickHandler={this.handleClick}
 						color="text-grey"
 					/>
@@ -64,7 +64,7 @@ class ButtonPanel extends Component {
 					<Button name="2" clickHandler={this.handleClick} />
 					<Button name="3" clickHandler={this.handleClick} />
 					<Button
-						name="+"
+						name="-"
 						clickHandler={this.handleClick}
 						color="text-grey"
 					/>
@@ -72,9 +72,9 @@ class ButtonPanel extends Component {
 				<div className="btn-row">
 					<Button name="." clickHandler={this.handleClick} />
 					<Button name="0" clickHandler={this.handleClick} />
-					<Button name="00" clickHandler={this.handleClick} />
+					<Button name="=" clickHandler={this.handleClick} />
 					<Button
-						name="="
+						name="+"
 						clickHandler={this.handleClick}
 						color="text-grey"
 					/>

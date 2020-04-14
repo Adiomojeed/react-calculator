@@ -11,24 +11,29 @@ class App extends React.Component {
 		this.state = {
 			total: null,
 			next: null,
+			operation: null,
+			totValue:  null
 		};
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick(buttonName) {
 		this.setState((prevState) => {
-			return calculate(prevState, buttonName);
-		});
+			return calculate(prevState, buttonName)
+		})
 	}
 
 	render() {
-		const { total, next } = this.state;
+		const { total, next, totValue } = this.state;
 		return (
 			<React.Fragment>
 				<div className="container">
 					<div className="row">
 						<div className="col-12 col-lg-6">
-							<Display value={next || total || "0"} />
+							<Display
+								value={next || total || "0"}
+								totValue={totValue || "0"}
+							/>
 							<ButtonPanel clickHandler={this.handleClick} />
 							<footer>codeLeaf</footer>
 						</div>

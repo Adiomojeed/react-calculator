@@ -6,11 +6,30 @@ export default function calculate(obj, buttonName) {
 	// next: this is the present value displayed on screen
 	// operation: this is the operation performed
 
+	if (buttonName === "del") {
+		if (obj.next) {
+			let a = obj.next
+				.split("")
+				.splice(0, obj.next.length - 1)
+				.join("");
+			let b = obj.totValue
+				.split("")
+				.splice(0, obj.totValue.length - 1)
+				.join("");
+			return {
+				next: a,
+				totValue: b,
+			};
+		}
+		return {};
+	}
+
 	if (buttonName === "AC") {
 		return {
 			next: null,
 			total: null,
 			operation: null,
+			totValue: null,
 		};
 	}
 
@@ -24,10 +43,12 @@ export default function calculate(obj, buttonName) {
 			if (obj.next) {
 				return {
 					next: obj.next + buttonName,
+					totValue: obj.totValue + buttonName,
 				};
 			}
 			return {
 				next: buttonName,
+				totValue: obj.totValue + buttonName,
 			};
 		}
 
@@ -38,6 +59,7 @@ export default function calculate(obj, buttonName) {
 			return {
 				next,
 				total: null,
+				totValue: next,
 			};
 		}
 
@@ -45,6 +67,7 @@ export default function calculate(obj, buttonName) {
 		return {
 			next: buttonName,
 			total: null,
+			totValue: buttonName,
 		};
 	}
 
@@ -52,10 +75,10 @@ export default function calculate(obj, buttonName) {
 		if (obj.next && obj.operation) {
 			return {
 				// performs the operation and returns the value
-
 				total: operate(obj.total, obj.next, obj.operation),
 				next: null,
 				operation: null,
+				totValue: operate(obj.total, obj.next, obj.operation),
 			};
 		}
 		return {};
@@ -89,22 +112,27 @@ export default function calculate(obj, buttonName) {
 			if (obj.next.includes(".")) {
 				return {
 					next: obj.next,
+					totValue: obj.next,
 				};
 			}
 			return {
 				next: `${obj.next}.`,
+				totValue: `${obj.totValue}.`,
 			};
 		}
 		return {
 			next: "0.",
+			totValue: "0.",
 		};
 	}
 
 	if (obj.operation) {
+
 		return {
 			total: operate(obj.total, obj.next, obj.operation),
 			next: null,
 			operation: buttonName,
+			totValue: obj.totValue + buttonName,
 		};
 	}
 
@@ -112,6 +140,7 @@ export default function calculate(obj, buttonName) {
 	if (!obj.next) {
 		return {
 			operation: buttonName,
+			totValue: obj.totValue,
 		};
 	}
 
@@ -119,5 +148,6 @@ export default function calculate(obj, buttonName) {
 		total: obj.next,
 		next: null,
 		operation: buttonName,
+		totValue: obj.next + buttonName,
 	};
 }

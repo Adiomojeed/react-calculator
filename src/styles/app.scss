@@ -37,15 +37,22 @@ body {
 .display {
     max-width: 100%;
     height: 13.5vh;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
     padding-right: 50px;
     padding-top: 30px;
-    font-size: 40px;
-    margin: auto;
     color: #c8d6e5;
     font-weight: 400;
+}
+
+.display-1 {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+}
+
+.display-2 {
+    font-size: 60px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .cont {
@@ -67,6 +74,7 @@ body {
     height: 14vh;
     margin: .2%;
     background-color: #222f3e;
+    border-radius: 10px;
     &:hover {
         background-color: darken($color: #222f3e, $amount: .5);
     }
