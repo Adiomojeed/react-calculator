@@ -127,7 +127,13 @@ export default function calculate(obj, buttonName) {
 	}
 
 	if (obj.operation) {
-
+		let lastVal = obj.totValue.length-1
+		if (buttonName === obj.totValue[lastVal]) {
+			return {
+				totValue: obj.totValue
+			}
+		}
+		
 		return {
 			total: operate(obj.total, obj.next, obj.operation),
 			next: null,

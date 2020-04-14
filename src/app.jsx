@@ -35,7 +35,7 @@ class App extends React.Component {
 								totValue={totValue || "0"}
 							/>
 							<ButtonPanel clickHandler={this.handleClick} />
-							<footer>codeLeaf</footer>
+							<footer><i className="fas fa-solid"></i> codeLeaf	&#128640;</footer>
 						</div>
 					</div>
 				</div>
