@@ -1,5 +1,6 @@
 import operate from "./operate";
 import isNumber from "./isNumber";
+import Big from "big.js";
 
 export default function calculate(obj, buttonName) {
 	// total: this is the total value of the calculations
@@ -7,6 +8,12 @@ export default function calculate(obj, buttonName) {
 	// operation: this is the operation performed
 
 	if (buttonName === "del") {
+		if (obj.next === obj.totValue / 100) {
+			return {
+				next: obj.next,
+				totValue: obj.totValue,
+			};
+		}
 		if (obj.next) {
 			let a = obj.next
 				.split("")
@@ -58,7 +65,7 @@ export default function calculate(obj, buttonName) {
 			const next = obj.next === "0" ? buttonName : obj.next + buttonName;
 			return {
 				next,
-				total: null,
+				total: obj.next + buttonName,
 				totValue: next,
 			};
 		}
@@ -66,19 +73,25 @@ export default function calculate(obj, buttonName) {
 		// returns the button clicked in its initial state
 		return {
 			next: buttonName,
-			total: null,
+			total: buttonName,
 			totValue: buttonName,
 		};
 	}
 
 	if (buttonName === "=") {
 		if (obj.next && obj.operation) {
+			const total =
+				operate(obj.total, obj.next, obj.operation).length < 10
+					? operate(obj.total, obj.next, obj.operation)
+					: Number(operate(obj.total, obj.next, obj.operation))
+							.toExponential()
+							.toString();
 			return {
 				// performs the operation and returns the value
-				total: operate(obj.total, obj.next, obj.operation),
+				total,
 				next: null,
 				operation: null,
-				totValue: operate(obj.total, obj.next, obj.operation),
+				totValue: total,
 			};
 		}
 		return {};
@@ -127,15 +140,20 @@ export default function calculate(obj, buttonName) {
 	}
 
 	if (obj.operation) {
-		let lastVal = obj.totValue.length-1
+		let lastVal = obj.totValue.length - 1;
 		if (buttonName === obj.totValue[lastVal]) {
 			return {
-				totValue: obj.totValue
-			}
+				totValue: obj.totValue,
+			};
 		}
-		
+		const total =
+			operate(obj.total, obj.next, obj.operation).length < 10
+				? operate(obj.total, obj.next, obj.operation)
+				: Number(operate(obj.total, obj.next, obj.operation))
+						.toExponential()
+						.toString();
 		return {
-			total: operate(obj.total, obj.next, obj.operation),
+			total,
 			next: null,
 			operation: buttonName,
 			totValue: obj.totValue + buttonName,

@@ -31,7 +31,7 @@ class App extends React.Component {
 					<div className="row">
 						<div className="col-12 col-lg-6">
 							<Display
-								value={next || total || "0"}
+								value={total || "0"}
 								totValue={totValue || "0"}
 							/>
 							<ButtonPanel clickHandler={this.handleClick} />
