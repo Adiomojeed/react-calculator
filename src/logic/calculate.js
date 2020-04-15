@@ -26,6 +26,7 @@ export default function calculate(obj, buttonName) {
 			return {
 				next: a,
 				totValue: b,
+				total: a
 			};
 		}
 		return {};
