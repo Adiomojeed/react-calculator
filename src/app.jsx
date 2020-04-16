@@ -12,15 +12,15 @@ class App extends React.Component {
 			total: null,
 			next: null,
 			operation: null,
-			totValue:  null
+			totValue: null,
 		};
 		this.handleClick = this.handleClick.bind(this);
 	}
 
 	handleClick(buttonName) {
 		this.setState((prevState) => {
-			return calculate(prevState, buttonName)
-		})
+			return calculate(prevState, buttonName);
+		});
 	}
 
 	render() {
@@ -31,11 +31,14 @@ class App extends React.Component {
 					<div className="row">
 						<div className="col-12 col-lg-6">
 							<Display
-								value={total || "0"}
 								totValue={totValue || "0"}
+								value={total || "0"}
 							/>
 							<ButtonPanel clickHandler={this.handleClick} />
-							<footer><i className="fas fa-solid"></i> codeLeaf	&#128640;</footer>
+							<footer>
+								<i className="fas fa-solid"></i> codeLeaf
+								&#128640;
+							</footer>
 						</div>
 					</div>
 				</div>

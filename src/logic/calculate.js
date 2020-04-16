@@ -8,27 +8,29 @@ export default function calculate(obj, buttonName) {
 	// operation: this is the operation performed
 
 	if (buttonName === "del") {
+	
 		if (obj.next === obj.totValue / 100) {
 			return {
 				next: obj.next,
 				totValue: obj.totValue,
 			};
 		}
-		if (obj.next) {
+		if (obj.operation) {
 			let a = obj.next
-				.split("")
-				.splice(0, obj.next.length - 1)
-				.join("");
-			let b = obj.totValue
-				.split("")
-				.splice(0, obj.totValue.length - 1)
-				.join("");
+			.split("")
+			.splice(0, obj.next.length - 1)
+			.join("");
+		let b = obj.totValue
+			.split("")
+			.splice(0, obj.totValue.length - 1)
+			.join("");
 			return {
 				next: a,
+				total: obj.total,
 				totValue: b,
-				total: a
 			};
 		}
+
 		return {};
 	}
 
@@ -99,23 +101,47 @@ export default function calculate(obj, buttonName) {
 	}
 
 	if (buttonName === "+/-") {
+		if (obj.operation) {
+			return {
+				next: (parseFloat(obj.next) * -1).toString(),
+				totValue:  obj.totValue ,
+				total: obj.total
+			}
+		}
 		if (obj.next) {
 			return {
 				next: (parseFloat(obj.next) * -1).toString(),
+				totValue: (parseFloat(obj.next) * -1).toString(),
+				total: (parseFloat(obj.total) * -1).toString()
 			};
 		}
 		return { total: (parseFloat(obj.total) * -1).toString() };
 	}
 
 	if (buttonName === "%") {
+		if (obj.operation) {
+			let a = obj.totValue
+				.split("")
+				.splice(0, obj.totValue.length - obj.next.length)
+				.join("");
+			return {
+				next: obj.next / 100,
+				totValue: a + obj.next / 100,
+				total: obj.total,
+			};
+		}
 		if (obj.next) {
 			return {
 				next: obj.next / 100,
+				totValue: obj.totValue / 100,
+				total: obj.total,
 			};
 		}
 		if (obj.total) {
 			return {
 				total: obj.total / 100,
+				next: obj.next / 100,
+				totValue: obj.totValue / 100,
 			};
 		}
 		return {};
@@ -147,6 +173,7 @@ export default function calculate(obj, buttonName) {
 				totValue: obj.totValue,
 			};
 		}
+
 		const total =
 			operate(obj.total, obj.next, obj.operation).length < 10
 				? operate(obj.total, obj.next, obj.operation)
